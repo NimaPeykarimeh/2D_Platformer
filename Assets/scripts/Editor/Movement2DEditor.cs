@@ -208,24 +208,6 @@ public class Movement2DEditor : Editor
                 }
             }
             EditorGUILayout.Space();
-
-            EditorGUILayout.Space(headerTopSpace);
-            EditorGUILayout.LabelField("Slope Check", mainHeader);
-            EditorGUILayout.Space(headerBottomSpace);
-
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("isSlopeActive"), new GUIContent("isSlopeActive", "Current vertical speed"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("maxSlope"), new GUIContent("Max Slope", "Current vertical speed"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("currentSlope"), new GUIContent("Current Slope", "Current vertical speed"));
-            
-            
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("rotatePlayerOnSlope"), new GUIContent("rotatePlayerOnSlope", "Current vertical speed"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("slopeRotateSpeed"), new GUIContent("slopeRotateSpeed", "Current vertical speed"));
-
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("slopeCheckRayDistance"), new GUIContent("slopeCheckRayDistance", "Current vertical speed"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("slopeLayer"), new GUIContent("slopeLayer", "Current vertical speed"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("slopeRayOffset"), new GUIContent("slopeRayOffset", "Current vertical speed"));
-            EditorGUILayout.PropertyField(serializedObject.FindProperty("isOverSlopeLimit"), new GUIContent("isOverSlopeLimit", "Current vertical speed"));
-            
             
 
             // New fields for ground check

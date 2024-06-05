@@ -125,18 +125,6 @@ public class Movement2D : MonoBehaviour
     [SerializeField] float ledgeClimbDuration;
     [SerializeField] float ledgeClimbTimer;
 
-    //SLOPE_CHECk
-    [SerializeField] bool isSlopeActive;
-    [SerializeField] int maxSlope = 45;
-    [SerializeField] int currentSlope;
-    [SerializeField] bool rotatePlayerOnSlope;
-    [SerializeField] float slopeRotateSpeed;
-
-    [SerializeField] float slopeCheckRayDistance = 1f;
-    [SerializeField] float slopeRayOffset = 0.5f;
-    [SerializeField] LayerMask slopeLayer;
-    [SerializeField] bool isOverSlopeLimit;
-
     [Space]
     //[Header("----GroundCheck----")]
     [SerializeField] float groundCheckRayDistance = 1f;
@@ -260,7 +248,6 @@ public class Movement2D : MonoBehaviour
         {
 
             UpdatePlatformerSpeed();
-            GetSlopeAngle();
             MovePlayer();
             LedgeClimbCountdown();
         }
@@ -539,9 +526,6 @@ public class Movement2D : MonoBehaviour
 
         Gizmos.color = Color.blue;
 
-        Gizmos.DrawRay(transform.position - transform.up * slopeRayOffset,Vector2.down * slopeCheckRayDistance);
-
-
         _ledgePos = new Vector2(transform.position.x, transform.position.y + ledgeCheckOffset);
         Gizmos.DrawRay(_ledgePos, spriteTransform.right * ledgeCheckDistance);
 
@@ -634,50 +618,14 @@ public class Movement2D : MonoBehaviour
         }
     }
 
-    void GetSlopeAngle()
-    {
-        RaycastHit2D hit2D = Physics2D.Raycast(transform.position - transform.up * slopeRayOffset, Vector2.down, slopeCheckRayDistance, slopeLayer);
-
-        Debug.DrawRay(hit2D.point, hit2D.normal, Color.yellow);
-
-        currentSlope = Mathf.RoundToInt(Vector2.Angle(Vector2.up, hit2D.normal));
-        isOverSlopeLimit = currentSlope > maxSlope && hit2D;
-        Vector2 move_dir = input;
-        move_dir.y = 0;
-
-        bool isMovingUpSlope = Vector2.Dot(move_dir, hit2D.normal) < 0;
-
-        if (hit2D && !isOverSlopeLimit)
-        {
-            if (rotatePlayerOnSlope)
-            {
-                transform.up = Vector3.MoveTowards(transform.up, hit2D.normal, slopeRotateSpeed * Time.fixedDeltaTime);
-            }
-
-            if ( !isJumped && isSlopeActive && currentSlope > 0)
-            {
-            
-                if (isMovingUpSlope)
-                {
-                    currentVerticalSpeed = Mathf.Abs(currentHorizontalSpeed) * Mathf.Sin(currentSlope * Mathf.Deg2Rad);
-                }
-                else
-                {
-                    currentVerticalSpeed = -Mathf.Abs(currentHorizontalSpeed) * Mathf.Sin(currentSlope * Mathf.Deg2Rad) * 1.5f;
-                }
-            }   
-        }
-        
-
-    }
-
+   
     void CheckGround()
     {
         RaycastHit2D hit2D = Physics2D.CircleCast(transform.position, groundCheckCircleRadius, -transform.up, groundCheckRayDistance, groundLayer);
         if (hit2D)
         {
             
-            if (!isGrounded && !isOverSlopeLimit)
+            if (!isGrounded)
             {
                 
                 isGrounded = true;
@@ -693,21 +641,6 @@ public class Movement2D : MonoBehaviour
                 {
                     currentVerticalSpeed = 0f;
                     isJumped = false;
-                }
-            }
-            else if (isOverSlopeLimit)
-            {
-                onAirControlMultiplier = onAirControl;
-                isGrounded = false;
-
-
-                if (!isJumped)
-                {
-                    fallToleranceTimer = coyoteTime;
-                    if (!dashCancelsGravity)
-                    {
-                        CancelDash();
-                    }
                 }
             }
             if (resetDashOnGround)
