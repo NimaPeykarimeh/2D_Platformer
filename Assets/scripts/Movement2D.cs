@@ -950,8 +950,44 @@ public class Movement2D : MonoBehaviour
             currentVerticalSpeed = Mathf.Lerp(currentVerticalSpeed, 0, stopDuration );
         }
     }
+
+    //Vector2 CheckPosition(Vector2 _pos)
+    //{
+    //    Vector2 _dir = _pos - rb2.position; // Calculate the direction of movement
+    //    Vector2 _center = rb2.position; // Center position of the capsule
+
+    //    // Distance to check, including the size of the capsule
+    //    float distance = _dir.magnitude;
+
+    //    RaycastHit2D hit = Physics2D.CapsuleCast(
+    //        _center,
+    //        capsuleCollider.size,
+    //        capsuleCollider.direction,
+    //        0f,
+    //        _dir,
+    //        distance
+    //    );
+
+    //    if (hit.collider != null)
+    //    {
+    //        // Calculate the position to move to based on the hit distance, subtracting the capsule size to prevent penetration
+    //        Vector2 newPosition = _center + (_dir.normalized * (hit.distance - 0.1f));
+    //        print(rb2.position - newPosition);
+    //        return newPosition;
+    //    }
+
+    //    // No collision, return the original position
+    //    return _pos;
+    //}
+
     void MovePlayer()
     {
+        //KINEMATIC
+        //Vector2 currentPosition = rb2.position;
+        //Vector2 newPosition = currentPosition + new Vector2(currentHorizontalSpeed, currentVerticalSpeed) * Time.fixedDeltaTime;
+        //rb2.MovePosition(CheckPosition(newPosition));
+
+
         rb2.velocity = new Vector2(currentHorizontalSpeed,currentVerticalSpeed); 
     }
 }
