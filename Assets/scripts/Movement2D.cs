@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.UIElements;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(CapsuleCollider2D))]
 public class Movement2D : MonoBehaviour
 {
     public GUIStyle mainHeaderStyle;
@@ -23,23 +20,20 @@ public class Movement2D : MonoBehaviour
     [Space]
     //[Header("SPEED VALUES")]
     [Range(1, 10)]
-    [SerializeField] float movementSpeed = 4f;
+    [SerializeField] float movementSpeed = 5f;
     [Range(0.02f, 1)]
-    [SerializeField] float speedUpAccelaration = 2f;
+    [SerializeField] float speedUpDuration = 0.1f;
     [Range(0.02f, 1)]
-    [SerializeField] float speedDownAccelaration = 3f;
+    [SerializeField] float speedDownDuration = 0.06f;
     [Range(0.02f, 1)]
-    [SerializeField] float stopAccelaration = 3f;
+    [SerializeField] float stopDuration = 0.15f;
 
-
-
-    [Space]
     //[Header("DASH")]
     [SerializeField] bool Dash;
     [SerializeField] KeyCode dashButton = KeyCode.LeftShift;
     [SerializeField] bool cancelDashOnWallHit;
     //[Header("-Dash Values")]
-    [Range(1f, 5f)]
+    [Range(1f, 10f)]
     [SerializeField] float dashDistance = 3f;
     [Range(0.1f, 10)]
     [SerializeField] float dashDuration = 0.3f;
@@ -55,11 +49,9 @@ public class Movement2D : MonoBehaviour
     [SerializeField] bool horizontalDash;
     [SerializeField] Vector2 dashColliderScale;
     [SerializeField] Vector2 dashColliderOffset;
-    [SerializeField] GameObject dashParticle;
     [Space]
-    [SerializeField] float dashShakeDuration;
-    [SerializeField] float dashShakeMagni;
-    [SerializeField] float dashShakeFreq;
+    [SerializeField] float dashCooldown = 0.5f;
+    [SerializeField] float dashCoolTimer;
 
     bool canDash;
     Vector2 defaultColliderOffset;
@@ -69,23 +61,23 @@ public class Movement2D : MonoBehaviour
     //DASH INFO
     [HideInInspector] public bool isDashing;
     float dashSpeed;
-    float dashTimer;
+    float dashingTimer;
 
     [Space]
     //[Header("WALL JUMP")]
     public bool WallJump;
     [SerializeField] Vector2 wallJumpVelocity;
+    [Range(0.02f, 1f)]
+    [SerializeField] float wallJumpDecelerationFactor = 0.3f;
     [Range(0.01f, 10f)]
     [SerializeField] float wallSlideSpeed = 0.5f;
     [SerializeField] bool isSlidingOnWall;
-
+    [SerializeField] bool variableJumpHeightOnWallJump;
 
     [Space]
     //[Header("----Jumping Values----")]
     [Range(0.5f, 10f)]
-    [SerializeField] float jumpHight = 1f;
-    [Range(1f, 20f)]
-    [SerializeField] float jumpVelocity = 10f;
+    [SerializeField] float jumpHight = 1.5f;
     [Range(0.5f, 50f)]
     [SerializeField] float jumpUpAcceleration = 2.5f;
     [Range(0.5f, 50f)]
@@ -94,7 +86,11 @@ public class Movement2D : MonoBehaviour
     [SerializeField] float fallSpeedClamp = 50;
     [Range(1f, 20f)]
     [SerializeField] float gravity = 9.8f;
+    [SerializeField] float jumpVelocity;
     [SerializeField] float fallClamp;
+    [SerializeField] float jumpUpDuration;
+    [SerializeField] bool isNormalJumped;
+    [SerializeField] bool isWallJumped;
 
     [Space]
     //[Header("----Jump Adjustments----")]
@@ -105,10 +101,10 @@ public class Movement2D : MonoBehaviour
     [Range(0f, 1f)]
     [SerializeField] float onAirControl = 1f;
 
-    [Range(0f, 0.3f)]
-    [SerializeField] float variableJumpHeightDuration = 0f;
     [Range(0f, 1f)]
-    [SerializeField] float jumpReleaseEffect = 0f;
+    [SerializeField] float variableJumpHeightDuration = 0.75f;
+    [Range(0f, 1f)]
+    [SerializeField] float jumpReleaseEffect = 0.5f;
     [SerializeField] KeyCode jumpButton = KeyCode.Space;
     bool isHoldingJumpButton;
     float jumpHoldTimer;
@@ -117,15 +113,29 @@ public class Movement2D : MonoBehaviour
     //[Header("Ledge Climb")]
     [SerializeField] bool LedgeGrab;
     [SerializeField] bool autoClimbLedge;
+    [SerializeField] KeyCode climbButton = KeyCode.W;
+    [SerializeField] bool canWallJumpWhileClimbing;
     [SerializeField] float ledgeCheckOffset = 1f;
     [SerializeField] float ledgeCheckDistance = 1f;
     [SerializeField] LayerMask ledgeCheckLayer;
     public bool isLedge;
     Vector2 ledgePosition;
-    [SerializeField] Vector2[] ledgeClimbPosList;
-    [SerializeField] int ledgeClimpPosIndex;
+    [SerializeField] Vector2 ledgeClimbPosOffset;
     public bool isClimbingLedge;
+    [SerializeField] float ledgeClimbDuration;
+    [SerializeField] float ledgeClimbTimer;
 
+    //SLOPE_CHECk
+    [SerializeField] bool isSlopeActive;
+    [SerializeField] int maxSlope = 45;
+    [SerializeField] int currentSlope;
+    [SerializeField] bool rotatePlayerOnSlope;
+    [SerializeField] float slopeRotateSpeed;
+
+    [SerializeField] float slopeCheckRayDistance = 1f;
+    [SerializeField] float slopeRayOffset = 0.5f;
+    [SerializeField] LayerMask slopeLayer;
+    [SerializeField] bool isOverSlopeLimit;
 
     [Space]
     //[Header("----GroundCheck----")]
@@ -158,17 +168,12 @@ public class Movement2D : MonoBehaviour
     public bool leftWallHit;
     public bool rightWallHit;
     public bool hitWall;
-    [SerializeField] float dist;
     public bool isJumped;//to check if the player is on air because of jumping or falling
     public bool isPressedJumpButton;
-    [Range(-1f, 1f)]
-    [SerializeField] float verticalSpeedDebugger;
-    [Range(-1f, 1f)]
-    [SerializeField] float horizontalSpeedDebugger;
 
     float onAirControlMultiplier;
 
-    
+
 
     private void Reset()
     {
@@ -177,6 +182,7 @@ public class Movement2D : MonoBehaviour
         rb2.gravityScale = 0;
         rb2.interpolation = RigidbodyInterpolation2D.Interpolate;
         rb2.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        capsuleCollider = GetComponent<CapsuleCollider2D>();
     }
 
     private void Start()
@@ -252,8 +258,11 @@ public class Movement2D : MonoBehaviour
         }
         else if (movingType == MovingType.Platformer)
         {
-            
+
             UpdatePlatformerSpeed();
+            GetSlopeAngle();
+            MovePlayer();
+            LedgeClimbCountdown();
         }
     }
 
@@ -264,51 +273,60 @@ public class Movement2D : MonoBehaviour
         DoDash();
         CheckCeil();
         CheckGround();
-        MoveTopDownPlayer();
         FlipThePlayer();
         CountDownJumpTolerance();
         SwitchState();
         CheckLedge();
+        DashCooldownCounter();
+        
     }
     void DoDash()
     {
         if (isDashing)
         {
-            dashTimer -= Time.deltaTime;
-            if (dashTimer <= 0 && !onCeil)
+            dashingTimer -= Time.deltaTime;
+            if (dashingTimer <= 0 && ( (isGrounded && !onCeil) || !isGrounded) )
             {
                 CancelDash();
 
             }
         }
     }
-
+    void DashCooldownCounter()
+    {
+        if (dashCoolTimer > 0)
+        {
+            dashCoolTimer -= Time.fixedDeltaTime;
+        }
+    }
     void ClimbLedge()
     {
+        //transform.GetChild(0).GetComponent<Animator>().Play("ProtoLedgeClimb");
+        
         isClimbingLedge = true;
+        ledgeClimbTimer = ledgeClimbDuration;
 
     }
-
+    void LedgeClimbCountdown()
+    {
+        if (isClimbingLedge)
+        {
+            ledgeClimbTimer -= Time.deltaTime;
+            if (ledgeClimbTimer <= 0f)
+            {
+                UpdateLedgeClimbPosition();
+            }
+        }
+    }
     public void UpdateLedgeClimbPosition()
     {
-
-        //Vector2 _posOffset = new Vector2(spriteTransform.right.x * ledgeClimbPosList[ledgeClimpPosIndex].x,
-        //    spriteTransform.up.y * ledgeClimbPosList[ledgeClimpPosIndex].y);
-
-        //rb2.MovePosition((Vector2)transform.position + _posOffset);
-
-        //ledgeClimpPosIndex++;
-        //if (ledgeClimpPosIndex >= ledgeClimbPosList.Length)
-        //{
-        //    isClimbingLedge = false;
-        //    capsuleCollider.isTrigger = false;
-        //}
+        isClimbingLedge = false;
+        //transform.GetChild(0).GetComponent<Animator>().Play("ProtoIdle");
         transform.position = spriteTransform.position;
-        Vector2 _posOffset = new Vector2(spriteTransform.right.x * ledgeClimbPosList[0].x,
-            spriteTransform.up.y * ledgeClimbPosList[0].y);
+        Vector2 _posOffset = new (spriteTransform.right.x * ledgeClimbPosOffset.x,
+            spriteTransform.up.y * ledgeClimbPosOffset.y);
         transform.position = (Vector2)transform.position + _posOffset;
 
-        isClimbingLedge = false;
 
     }
 
@@ -317,7 +335,7 @@ public class Movement2D : MonoBehaviour
         if (LedgeGrab) 
         { 
             //CHECH THE LEDGE
-            Vector2 _ledgeCheckOrigin = new Vector2(transform.position.x,transform.position.y + ledgeCheckOffset);
+            Vector2 _ledgeCheckOrigin = new(transform.position.x,transform.position.y + ledgeCheckOffset);
             RaycastHit2D _HitLedge = Physics2D.Raycast(_ledgeCheckOrigin, spriteTransform.right, ledgeCheckDistance, ledgeCheckLayer);
             bool _canGrabLedge = !_HitLedge && hitWall;
 
@@ -344,7 +362,7 @@ public class Movement2D : MonoBehaviour
 
                         }
                     }
-                    if (Input.GetKeyDown(KeyCode.W) && !autoClimbLedge)
+                    if (Input.GetKeyDown(climbButton) && !autoClimbLedge)
                     {
                         ClimbLedge();
                     }
@@ -371,8 +389,7 @@ public class Movement2D : MonoBehaviour
         if (isDashing)
         {
             isDashing = false;
-
-            dashParticle.transform.SetParent(null);
+            dashCoolTimer = dashCooldown;
             currentHorizontalSpeed *= dashStopEffect;
             currentVerticalSpeed *= dashStopEffect;
 
@@ -383,7 +400,7 @@ public class Movement2D : MonoBehaviour
 
     void DashPressed()
     {
-        if ( canDash && !isDashing && Dash && ( (horizontalDash && input.x != 0) || (verticalDash && input.y != 0) ))
+        if ( canDash && !isDashing && Dash && ( (horizontalDash && input.x != 0) || (verticalDash && input.y != 0) ) && dashCoolTimer <= 0f)
         {
 
             if (!isGrounded) 
@@ -391,16 +408,9 @@ public class Movement2D : MonoBehaviour
                 canDash = false;
 
             }
-            CameraShake.instance.ShakeCamera(dashShakeDuration,dashShakeMagni,dashShakeFreq);
             isDashing = true;
             dashSpeed = (dashDistance) / dashDuration;
-            dashParticle.SetActive(false);
-            dashParticle.transform.SetParent(spriteTransform);
-            dashParticle.transform.localPosition = Vector3.zero;
-            dashParticle.transform.localRotation = Quaternion.identity;
-            dashParticle.SetActive(true);
-
-            dashTimer = dashDuration;
+            dashingTimer = dashDuration;
 
             Vector2 _dir = Vector2.zero;
 
@@ -408,24 +418,18 @@ public class Movement2D : MonoBehaviour
             {
                 _dir.x = input.x;
                 currentHorizontalSpeed = dashSpeed * _dir.x;
+                currentVerticalSpeed = 0f;
+                
 
-                if (dashCancelsGravity)
-                {
-                    currentVerticalSpeed = dashSpeed * _dir.y;
-                }
-                //if (!dashCancelsGravity)
-                //{
-
-                //}
             }
-            if (verticalDash && !horizontalDash)
+            else if (verticalDash && !horizontalDash)
             {
                 _dir.y = input.y;
 
                 currentHorizontalSpeed = dashSpeed * _dir.x;
                 currentVerticalSpeed = dashSpeed * _dir.y;
             }
-            if (horizontalDash && verticalDash) 
+            else if (horizontalDash && verticalDash) 
             {
                 _dir = input.normalized;
 
@@ -433,11 +437,14 @@ public class Movement2D : MonoBehaviour
                 currentVerticalSpeed = dashSpeed * _dir.y;
             }
 
-            
 
+            if (isGrounded)
+            {
+                capsuleCollider.offset = dashColliderOffset;
+                capsuleCollider.size = dashColliderScale;
 
-            capsuleCollider.offset = dashColliderOffset;
-            capsuleCollider.size = dashColliderScale;
+            }
+
             
         }
     }
@@ -447,7 +454,7 @@ public class Movement2D : MonoBehaviour
         GetTopDownInput();
         UpdateTopDownSpeed();
         CheckSideWall();
-        MoveTopDownPlayer();
+        MovePlayer();
         FlipThePlayer();
     }
 
@@ -465,7 +472,7 @@ public class Movement2D : MonoBehaviour
         {
             isHoldingJumpButton = false;
         }
-        if (Input.GetButton("Fire3"))
+        if (Input.GetButtonDown("Fire3"))
         {
             DashPressed();
             
@@ -530,6 +537,11 @@ public class Movement2D : MonoBehaviour
             Gizmos.color = Color.red;
         }
 
+        Gizmos.color = Color.blue;
+
+        Gizmos.DrawRay(transform.position - transform.up * slopeRayOffset,Vector2.down * slopeCheckRayDistance);
+
+
         _ledgePos = new Vector2(transform.position.x, transform.position.y + ledgeCheckOffset);
         Gizmos.DrawRay(_ledgePos, spriteTransform.right * ledgeCheckDistance);
 
@@ -554,6 +566,16 @@ public class Movement2D : MonoBehaviour
         }
     }
 
+    public void GetAutoValueForCeilCheck()
+    {
+        if (capsuleCollider == null)
+        {
+            capsuleCollider = GetComponent<CapsuleCollider2D>();
+        }
+        ceilCheckCircleRadius = capsuleCollider.size.x / 2f;
+        ceilCheckRayDistance = (capsuleCollider.size.y / 2f) + capsuleCollider.offset.y - (ceilCheckCircleRadius) + 0.02f;
+    }
+
     void CheckSideWall()
     {
         rightWallHit = Physics2D.Raycast(transform.position,transform.right,wallCheckRayDistance,wallCheckLayer);
@@ -575,6 +597,7 @@ public class Movement2D : MonoBehaviour
             if (WallJump && !isGrounded)
             {
                 SlideOnWall(true);
+                
             }
 
             if (cancelDashOnWallHit)
@@ -600,6 +623,8 @@ public class Movement2D : MonoBehaviour
         if (!isSlidingOnWall && _sliding)
         {
             isSlidingOnWall = true;
+            isNormalJumped = false;
+            isWallJumped = false;
             fallClamp = wallSlideSpeed;
         }
         else if (isSlidingOnWall && !_sliding)
@@ -609,30 +634,87 @@ public class Movement2D : MonoBehaviour
         }
     }
 
+    void GetSlopeAngle()
+    {
+        RaycastHit2D hit2D = Physics2D.Raycast(transform.position - transform.up * slopeRayOffset, Vector2.down, slopeCheckRayDistance, slopeLayer);
+
+        Debug.DrawRay(hit2D.point, hit2D.normal, Color.yellow);
+
+        currentSlope = Mathf.RoundToInt(Vector2.Angle(Vector2.up, hit2D.normal));
+        isOverSlopeLimit = currentSlope > maxSlope && hit2D;
+        Vector2 move_dir = input;
+        move_dir.y = 0;
+
+        bool isMovingUpSlope = Vector2.Dot(move_dir, hit2D.normal) < 0;
+
+        if (hit2D && !isOverSlopeLimit)
+        {
+            if (rotatePlayerOnSlope)
+            {
+                transform.up = Vector3.MoveTowards(transform.up, hit2D.normal, slopeRotateSpeed * Time.fixedDeltaTime);
+            }
+
+            if ( !isJumped && isSlopeActive && currentSlope > 0)
+            {
+            
+                if (isMovingUpSlope)
+                {
+                    currentVerticalSpeed = Mathf.Abs(currentHorizontalSpeed) * Mathf.Sin(currentSlope * Mathf.Deg2Rad);
+                }
+                else
+                {
+                    currentVerticalSpeed = -Mathf.Abs(currentHorizontalSpeed) * Mathf.Sin(currentSlope * Mathf.Deg2Rad) * 1.5f;
+                }
+            }   
+        }
+        
+
+    }
 
     void CheckGround()
     {
         RaycastHit2D hit2D = Physics2D.CircleCast(transform.position, groundCheckCircleRadius, -transform.up, groundCheckRayDistance, groundLayer);
         if (hit2D)
         {
-            if (!isGrounded)
+            
+            if (!isGrounded && !isOverSlopeLimit)
             {
+                
                 isGrounded = true;
+                isWallJumped = false;
+                isNormalJumped = false;
                 fallClamp = fallSpeedClamp;
                 canJump = true;
                 canDash = resetDashOnGround;
                 onAirControlMultiplier = 1;
                 SlideOnWall(false);
+
+                if (currentVerticalSpeed <= 0)//to check if the player if grounded while falling
+                {
+                    currentVerticalSpeed = 0f;
+                    isJumped = false;
+                }
+            }
+            else if (isOverSlopeLimit)
+            {
+                onAirControlMultiplier = onAirControl;
+                isGrounded = false;
+
+
+                if (!isJumped)
+                {
+                    fallToleranceTimer = coyoteTime;
+                    if (!dashCancelsGravity)
+                    {
+                        CancelDash();
+                    }
+                }
+            }
+            if (resetDashOnGround)
+            {
+                canDash = true;
             }
 
-            //if (resetDashOnGround)
-            //{
-            //    canDash = true;
-            //}
-            if (currentVerticalSpeed <= 0)//to check if the player if grounded while falling
-            {
-                isJumped = false;
-            }
         }
         else
         {
@@ -670,6 +752,16 @@ public class Movement2D : MonoBehaviour
         }
     }
 
+    public void GetAutoValueForGroundCheck()
+    {
+        if (capsuleCollider == null)
+        {
+            capsuleCollider = GetComponent<CapsuleCollider2D>();
+        }
+        groundCheckCircleRadius = capsuleCollider.size.x / 2f;
+        groundCheckRayDistance= (capsuleCollider.size.y / 2f) - capsuleCollider.offset.y - (ceilCheckCircleRadius) + 0.02f;
+    }
+
     void PressJumpButton()
     {
         if (!isDashing)
@@ -677,7 +769,7 @@ public class Movement2D : MonoBehaviour
             isHoldingJumpButton = true;
             isPressedJumpButton = true;
             isForcingJump = true;
-            jumpHoldTimer = variableJumpHeightDuration;
+            jumpHoldTimer = variableJumpHeightDuration * jumpUpDuration;
             jumpToleranceTimer = jumpBuffer;
         }
     }
@@ -690,7 +782,7 @@ public class Movement2D : MonoBehaviour
             {
                 isForcingJump = false;
             }
-            if (!isHoldingJumpButton && isForcingJump)
+            if (!isHoldingJumpButton && isForcingJump && ((variableJumpHeightOnWallJump && isWallJumped) || isNormalJumped))
             {
                 currentVerticalSpeed *= jumpReleaseEffect;
                 isForcingJump = false;
@@ -701,19 +793,22 @@ public class Movement2D : MonoBehaviour
         if (canJump && isPressedJumpButton)
         {
             jumpVelocity = Mathf.Sqrt(2 * jumpUpAcceleration * jumpHight * gravity);
+            jumpUpDuration = jumpVelocity / (jumpUpAcceleration * gravity);
 
             isJumped = true;
             canJump = false;
             isPressedJumpButton = false;
             currentVerticalSpeed = jumpVelocity;
+            isNormalJumped = true;
         }
-        if (isPressedJumpButton && isSlidingOnWall && !isClimbingLedge)
+        if (isPressedJumpButton && isSlidingOnWall && ((!canWallJumpWhileClimbing && !isClimbingLedge)|| canWallJumpWhileClimbing ))
         {
             jumpVelocity = Mathf.Sqrt(2 * jumpUpAcceleration * jumpHight * gravity);
-
             isJumped = true;
             canJump = false;
+            isWallJumped = true;
             isPressedJumpButton = false;
+            onAirControlMultiplier = wallJumpDecelerationFactor;
             currentVerticalSpeed = jumpVelocity * wallJumpVelocity.y;
             if (leftWallHit)
             {
@@ -748,27 +843,18 @@ public class Movement2D : MonoBehaviour
                 {
                     if ((input.x > 0 && !rightWallHit) || (input.x < 0 && !leftWallHit))
                     {
-                        float xDist = Mathf.Abs(input.x * movementSpeed - currentHorizontalSpeed);
-                        currentHorizontalSpeed = Mathf.MoveTowards(currentHorizontalSpeed, input.x * movementSpeed, (Time.deltaTime / speedUpAccelaration) * onAirControlMultiplier * movementSpeed);// /(xDist)
-                        dist = xDist;
+                        currentHorizontalSpeed = Mathf.MoveTowards(currentHorizontalSpeed, input.x * movementSpeed, (Time.deltaTime / speedUpDuration) * onAirControlMultiplier * movementSpeed);// /(xDist)
                     }
-
-
                 }
                 else
                 {
-                    float xDist = Mathf.Abs(0 - currentHorizontalSpeed);
-                    currentHorizontalSpeed = Mathf.MoveTowards(currentHorizontalSpeed, 0, (Time.deltaTime / speedDownAccelaration) * onAirControlMultiplier * movementSpeed);
-                    dist = xDist;
+                    currentHorizontalSpeed = Mathf.MoveTowards(currentHorizontalSpeed, 0, (Time.deltaTime / speedDownDuration) * onAirControlMultiplier * movementSpeed);
                 }
             }
             else
             {
-                float xDist = Mathf.Abs(0 - currentHorizontalSpeed);
-                dist = xDist;
-                currentHorizontalSpeed = Mathf.MoveTowards(currentHorizontalSpeed, 0, (Time.deltaTime / stopAccelaration) * onAirControlMultiplier * movementSpeed);
+                currentHorizontalSpeed = Mathf.MoveTowards(currentHorizontalSpeed, 0, (Time.deltaTime / stopDuration) * onAirControlMultiplier * movementSpeed);
             }
-            horizontalSpeedDebugger = currentHorizontalSpeed / movementSpeed;
         }
         
         //if (!isGrounded)
@@ -795,26 +881,29 @@ public class Movement2D : MonoBehaviour
             }
             currentVerticalSpeed = Mathf.Clamp(currentVerticalSpeed,-fallClamp, 100f);
         }
-        else if(isGrounded)
-        {
-            if (currentVerticalSpeed < 0)
-            {
-                currentVerticalSpeed = Mathf.MoveTowards(currentVerticalSpeed,0,jumpDownAcceleration * jumpVelocity * 3 * Time.fixedDeltaTime);
-            }
-        }
-        verticalSpeedDebugger = currentVerticalSpeed / jumpUpAcceleration;
+        //else if(isGrounded)
+        //{
+        //    if (currentVerticalSpeed < 0)
+        //    {
+        //        currentVerticalSpeed = Mathf.MoveTowards(currentVerticalSpeed,0,jumpDownAcceleration * jumpVelocity * 3 * Time.fixedDeltaTime);
+        //    }
+        //}
     }
 
 //TopDown
     void FlipThePlayer()
     {
+        Vector3 _playerRot = spriteTransform.localEulerAngles;
+        
         if (currentHorizontalSpeed > 0 || (WallJump && isSlidingOnWall && rightWallHit))
         {
-            spriteTransform.eulerAngles = new Vector3(0f,0f,0f);
+            _playerRot.y = 0f;
+            spriteTransform.localEulerAngles = _playerRot;
         }
         else if (currentHorizontalSpeed < 0 || (WallJump && isSlidingOnWall && leftWallHit))
         {
-            spriteTransform.eulerAngles = new Vector3(0f, 180f, 0f);
+            _playerRot.y = 180f;
+            spriteTransform.localEulerAngles = _playerRot;
         }
     }
 
@@ -832,23 +921,16 @@ public class Movement2D : MonoBehaviour
             
             if (input.x * currentHorizontalSpeed >= 0)
             {
-                float xDist = Mathf.Abs(input.x * movementSpeed - currentHorizontalSpeed);
-                currentHorizontalSpeed = Mathf.Lerp(currentHorizontalSpeed, input.x * movementSpeed, speedUpAccelaration );// /(xDist)
-                dist = xDist;
-
+                currentHorizontalSpeed = Mathf.Lerp(currentHorizontalSpeed, input.x * movementSpeed, speedUpDuration );// /(xDist)
             }
             else
             {
-                float xDist = Mathf.Abs(0 - currentHorizontalSpeed);
-                currentHorizontalSpeed = Mathf.Lerp(currentHorizontalSpeed, 0, speedDownAccelaration);
-                dist = xDist;   
+                currentHorizontalSpeed = Mathf.Lerp(currentHorizontalSpeed, 0, speedDownDuration);
             }
         }
         else
         {
-            float xDist = Mathf.Abs(0 - currentHorizontalSpeed);
-            dist = xDist;
-            currentHorizontalSpeed = Mathf.Lerp(currentHorizontalSpeed, 0, stopAccelaration );
+            currentHorizontalSpeed = Mathf.Lerp(currentHorizontalSpeed, 0, stopDuration );
         }
 
         if (input.y != 0)
@@ -856,22 +938,19 @@ public class Movement2D : MonoBehaviour
             
             if (input.y * currentVerticalSpeed >= 0)
             {
-                float yDist = Mathf.Abs(input.y * movementSpeed - currentVerticalSpeed);
-                currentVerticalSpeed = Mathf.Lerp(currentVerticalSpeed, input.y * movementSpeed, speedUpAccelaration );// /(yDist)
+                currentVerticalSpeed = Mathf.Lerp(currentVerticalSpeed, input.y * movementSpeed, speedUpDuration );// /(yDist)
             }
             else
             {
-                float yDist = Mathf.Abs(0 - currentVerticalSpeed);
-                currentVerticalSpeed = Mathf.Lerp(currentVerticalSpeed, 0, speedDownAccelaration );
+                currentVerticalSpeed = Mathf.Lerp(currentVerticalSpeed, 0, speedDownDuration );
             }
         }
         else
         {
-            float yDist = Mathf.Abs(0 - currentVerticalSpeed);
-            currentVerticalSpeed = Mathf.Lerp(currentVerticalSpeed, 0, stopAccelaration );
+            currentVerticalSpeed = Mathf.Lerp(currentVerticalSpeed, 0, stopDuration );
         }
     }
-    void MoveTopDownPlayer()
+    void MovePlayer()
     {
         rb2.velocity = new Vector2(currentHorizontalSpeed,currentVerticalSpeed); 
     }

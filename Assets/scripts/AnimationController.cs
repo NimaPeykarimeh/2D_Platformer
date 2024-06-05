@@ -20,5 +20,6 @@ public class AnimationController : MonoBehaviour
         animator.SetBool("OnWallHit",movement.hitWall && movement.WallJump);
         animator.SetBool("OnLedge",movement.isLedge);
         animator.SetBool("ClimbLedge", movement.isClimbingLedge);
+        
     }
 }
