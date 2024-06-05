@@ -7,8 +7,6 @@ public class Movement2D : MonoBehaviour
     public GUIStyle mainHeaderStyle;
     public GUIStyle subHeaderStyle;
 
-
-    [SerializeField] Movement2D.MovingType movingType;
     [SerializeField] Transform spriteTransform;
     [SerializeField] Rigidbody2D rb2;
     [SerializeField] CapsuleCollider2D capsuleCollider;
@@ -127,12 +125,14 @@ public class Movement2D : MonoBehaviour
 
     [Space]
     //[Header("----GroundCheck----")]
+    [SerializeField] Vector2 groundCheckCenter;
     [SerializeField] float groundCheckRayDistance = 1f;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] float groundCheckCircleRadius = 0.5f;
 
     [Space]
     //[Header("----CeilCheck----")]
+    [SerializeField] Vector2 ceilCheckCenter;
     [SerializeField] float ceilCheckRayDistance = 0.1f;
     [SerializeField] LayerMask ceilLayer;
     [SerializeField] float ceilCheckCircleRadius = 0.5f;
@@ -178,12 +178,6 @@ public class Movement2D : MonoBehaviour
         fallClamp = fallSpeedClamp;
     }
 
-    public enum MovingType
-    {
-        TopDown,
-        Platformer
-    }
-
     public enum PlayerStates
     {
         None,
@@ -227,30 +221,17 @@ public class Movement2D : MonoBehaviour
     }
     private void Update()
     {
-        if (movingType == MovingType.TopDown)
-        {
-            HandleTopDownMovement();
-        }
-        else if (movingType == MovingType.Platformer)
-        {
-            HandlePlatformerMovement();
-        }
+        HandlePlatformerMovement();
 
     }
 
     private void FixedUpdate()
     {
-        if (movingType == MovingType.TopDown)
-        {
-            UpdateTopDownSpeed();
-        }
-        else if (movingType == MovingType.Platformer)
-        {
 
-            UpdatePlatformerSpeed();
-            MovePlayer();
-            LedgeClimbCountdown();
-        }
+        UpdatePlatformerSpeed();
+        MovePlayer();
+        LedgeClimbCountdown();
+
     }
 
     void HandlePlatformerMovement()
@@ -436,14 +417,6 @@ public class Movement2D : MonoBehaviour
         }
     }
 
-    void HandleTopDownMovement()
-    {
-        GetTopDownInput();
-        UpdateTopDownSpeed();
-        CheckSideWall();
-        MovePlayer();
-        FlipThePlayer();
-    }
 
     void GetPlatformerInput()
     {
@@ -478,7 +451,7 @@ public class Movement2D : MonoBehaviour
         {
             Gizmos.color = Color.red;
         }
-        Gizmos.DrawWireSphere(transform.position - transform.up * groundCheckRayDistance, groundCheckCircleRadius);
+        Gizmos.DrawWireSphere((Vector2)transform.position + groundCheckCenter - (Vector2)transform.up * groundCheckRayDistance, groundCheckCircleRadius);
 
         if (onCeil)
         {
@@ -488,7 +461,7 @@ public class Movement2D : MonoBehaviour
         {
             Gizmos.color = Color.red;
         }
-        Gizmos.DrawWireSphere(transform.position + transform.up * ceilCheckRayDistance, ceilCheckCircleRadius);
+        Gizmos.DrawWireSphere((Vector2)transform.position + ceilCheckCenter + (Vector2)transform.up * ceilCheckRayDistance, ceilCheckCircleRadius);
 
 
         if (rightWallHit)
@@ -534,7 +507,7 @@ public class Movement2D : MonoBehaviour
 
     void CheckCeil()
     {
-        RaycastHit2D hit2D = Physics2D.CircleCast(transform.position,ceilCheckCircleRadius,transform.up,ceilCheckRayDistance,ceilLayer);
+        RaycastHit2D hit2D = Physics2D.CircleCast((Vector2)transform.position + ceilCheckCenter,ceilCheckCircleRadius,transform.up,ceilCheckRayDistance,ceilLayer);
 
         if (hit2D )
         {
@@ -556,8 +529,9 @@ public class Movement2D : MonoBehaviour
         {
             capsuleCollider = GetComponent<CapsuleCollider2D>();
         }
+        ceilCheckCenter = capsuleCollider.offset;
         ceilCheckCircleRadius = capsuleCollider.size.x / 2f;
-        ceilCheckRayDistance = (capsuleCollider.size.y / 2f) + capsuleCollider.offset.y - (ceilCheckCircleRadius) + 0.02f;
+        ceilCheckRayDistance = (capsuleCollider.size.y / 2f) - (ceilCheckCircleRadius) + 0.02f;
     }
 
     void CheckSideWall()
@@ -621,7 +595,7 @@ public class Movement2D : MonoBehaviour
    
     void CheckGround()
     {
-        RaycastHit2D hit2D = Physics2D.CircleCast(transform.position, groundCheckCircleRadius, -transform.up, groundCheckRayDistance, groundLayer);
+        RaycastHit2D hit2D = Physics2D.CircleCast((Vector2)transform.position + groundCheckCenter, groundCheckCircleRadius, -transform.up, groundCheckRayDistance, groundLayer);
         if (hit2D)
         {
             
@@ -691,8 +665,9 @@ public class Movement2D : MonoBehaviour
         {
             capsuleCollider = GetComponent<CapsuleCollider2D>();
         }
+        groundCheckCenter = capsuleCollider.offset;
         groundCheckCircleRadius = capsuleCollider.size.x / 2f;
-        groundCheckRayDistance= (capsuleCollider.size.y / 2f) - capsuleCollider.offset.y - (ceilCheckCircleRadius) + 0.02f;
+        groundCheckRayDistance= (capsuleCollider.size.y / 2f) - (groundCheckCircleRadius) + 0.02f;
     }
 
     void PressJumpButton()
@@ -812,7 +787,6 @@ public class Movement2D : MonoBehaviour
         }
     }
 
-//TopDown
     void FlipThePlayer()
     {
         Vector3 _playerRot = spriteTransform.localEulerAngles;
@@ -826,50 +800,6 @@ public class Movement2D : MonoBehaviour
         {
             _playerRot.y = 180f;
             spriteTransform.localEulerAngles = _playerRot;
-        }
-    }
-
-    void GetTopDownInput()
-    {
-        input.x = Input.GetAxisRaw("Horizontal");
-        input.y = Input.GetAxisRaw("Vertical");
-        input = input.normalized;
-    }
-
-    void UpdateTopDownSpeed()
-    {
-        if (input.x != 0)
-        {
-            
-            if (input.x * currentHorizontalSpeed >= 0)
-            {
-                currentHorizontalSpeed = Mathf.Lerp(currentHorizontalSpeed, input.x * movementSpeed, speedUpDuration );// /(xDist)
-            }
-            else
-            {
-                currentHorizontalSpeed = Mathf.Lerp(currentHorizontalSpeed, 0, speedDownDuration);
-            }
-        }
-        else
-        {
-            currentHorizontalSpeed = Mathf.Lerp(currentHorizontalSpeed, 0, stopDuration );
-        }
-
-        if (input.y != 0)
-        {
-            
-            if (input.y * currentVerticalSpeed >= 0)
-            {
-                currentVerticalSpeed = Mathf.Lerp(currentVerticalSpeed, input.y * movementSpeed, speedUpDuration );// /(yDist)
-            }
-            else
-            {
-                currentVerticalSpeed = Mathf.Lerp(currentVerticalSpeed, 0, speedDownDuration );
-            }
-        }
-        else
-        {
-            currentVerticalSpeed = Mathf.Lerp(currentVerticalSpeed, 0, stopDuration );
         }
     }
 
