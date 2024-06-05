@@ -790,17 +790,6 @@ public class Movement2D : MonoBehaviour
             }
         }
         
-        //if (!isGrounded)
-        //{
-        //    if (currentVerticalSpeed >= 0)
-        //    {
-        //        currentVerticalSpeed -= jumpUpAcceleration * Time.deltaTime * jumpVelocity;
-        //    }
-        //    else if(currentVerticalSpeed < 0)
-        //    {
-        //        currentVerticalSpeed -= jumpDownAcceleration * Time.deltaTime * jumpVelocity;
-        //    }
-        //}
 
         if (!isGrounded && (!isDashing || (!dashCancelsGravity && isDashing)))
         {
@@ -814,13 +803,13 @@ public class Movement2D : MonoBehaviour
             }
             currentVerticalSpeed = Mathf.Clamp(currentVerticalSpeed,-fallClamp, 100f);
         }
-        //else if(isGrounded)
-        //{
-        //    if (currentVerticalSpeed < 0)
-        //    {
-        //        currentVerticalSpeed = Mathf.MoveTowards(currentVerticalSpeed,0,jumpDownAcceleration * jumpVelocity * 3 * Time.fixedDeltaTime);
-        //    }
-        //}
+        else if (isGrounded)
+        {
+            if (currentVerticalSpeed < 0)
+            {
+                currentVerticalSpeed = Mathf.MoveTowards(currentVerticalSpeed, 0, jumpDownAcceleration * jumpVelocity * 3 * Time.fixedDeltaTime);
+            }
+        }
     }
 
 //TopDown
@@ -883,6 +872,7 @@ public class Movement2D : MonoBehaviour
             currentVerticalSpeed = Mathf.Lerp(currentVerticalSpeed, 0, stopDuration );
         }
     }
+
     void MovePlayer()
     {
         rb2.velocity = new Vector2(currentHorizontalSpeed,currentVerticalSpeed); 
