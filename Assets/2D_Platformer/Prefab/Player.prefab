@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6337770135265212786}
   - component: {fileID: 9157191333940476646}
   - component: {fileID: 2489812007111012254}
-  - component: {fileID: 7610613143473347083}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -107,19 +106,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7610613143473347083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2947462942649988770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8e721da413597d4daedf3e68151de5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movement2D: {fileID: 1528946681388195310}
 --- !u!1 &3824983741059976045
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,10 +271,10 @@ MonoBehaviour:
       m_Right: 0
       m_Top: 0
       m_Bottom: 0
-    m_Font: {fileID: 0}
+    m_Font: {fileID: 12800000, guid: 2a461af94a6be1c44a0b60f88a5d5c0f, type: 3}
     m_FontSize: 18
-    m_FontStyle: 1
-    m_Alignment: 3
+    m_FontStyle: 0
+    m_Alignment: 4
     m_WordWrap: 0
     m_RichText: 1
     m_TextClipping: 0
