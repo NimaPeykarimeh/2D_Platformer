@@ -47,9 +47,9 @@ TagManager:
   - name: BG
     uniqueID: 210314927
     locked: 0
+  - name: WorldUILevel
+    uniqueID: 2696212555
+    locked: 0
   - name: Player
     uniqueID: 513585345
-    locked: 0
-  - name: FrontWall
-    uniqueID: 2696212555
     locked: 0
