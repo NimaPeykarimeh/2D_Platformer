@@ -53,7 +53,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5f4d78640e3425e468ec060925fe47ff, type: 2}
+  - {fileID: 2100000, guid: 1febe0067fc88864e979f1e2569c2828, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 1439721408, guid: c9cf2ac25c5e928498ead634192300ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 1528946681388195310}
   - component: {fileID: 2552148236987095955}
   - component: {fileID: 7382888186180316102}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -302,14 +302,14 @@ MonoBehaviour:
   dashDuration: 0.25
   dashStopEffect: 0.1
   resetDashOnGround: 1
-  resetDashOnWall: 1
+  resetDashOnWall: 0
   airDash: 1
   dashCancelsGravity: 1
   verticalDash: 0
   horizontalDash: 1
   dashColliderScale: {x: 0.34, y: 0.5184181}
   dashColliderOffset: {x: 0, y: -0.2047068}
-  dashCooldown: 0.3
+  dashCooldown: 0.5
   dashCoolTimer: 0
   isDashing: 0
   WallJump: 1
@@ -339,12 +339,12 @@ MonoBehaviour:
   LedgeGrab: 1
   autoClimbLedge: 1
   climbButton: 119
-  canWallJumpWhileClimbing: 1
+  canWallJumpWhileClimbing: 0
   ledgeCheckOffset: 0.43
   ledgeCheckDistance: 0.75
   ledgeCheckLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 1
   isLedge: 0
   ledgeClimbPosOffset: {x: 0.504, y: 0.746}
   isClimbingLedge: 0
@@ -354,18 +354,18 @@ MonoBehaviour:
   groundCheckRayDistance: 0.28713262
   groundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 1
   groundCheckCircleRadius: 0.16999999
   ceilCheckCenter: {x: 0, y: -0.06334901}
   ceilCheckRayDistance: 0.28713262
   ceilLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 1
   ceilCheckCircleRadius: 0.16999999
   wallCheckRayDistance: 0.25
   wallCheckLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 1
   jumpToleranceTimer: 0
   fallToleranceTimer: 0
   isGrounded: 0
@@ -404,6 +404,7 @@ MonoBehaviour:
   SetToView: 0
   CrossColor: {r: 1, g: 1, b: 1, a: 1}
   crossSize: 0.45
+  centerPosition: {x: 24.703728, y: 2.8728344, z: 0}
 --- !u!1 &5741030342990803403
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,9 +476,9 @@ TrailRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 513585345
-  m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 2
   m_Time: 3
   m_PreviewTimeScale: 1
   m_Parameters:

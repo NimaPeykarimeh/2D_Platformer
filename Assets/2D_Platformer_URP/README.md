@@ -1,8 +1,9 @@
+
 This package offers two straightforward methods for integrating the 2D Platformer Controller Script into your Unity project:
 
 1-Using the Prefab:
 
--We've provided a ready-to-use prefab for quick implementation. Simply drag and drop the prefab into your level scene.
+-I've provided a ready-to-use prefab for quick implementation. Simply drag and drop the prefab into your level scene.
 
 -Customize the controller's settings by adjusting the values in the inspector panel to suit your game's requirements.
 
