@@ -16,7 +16,13 @@ public class PauseManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape)) { PauseGame(); }
         if (Input.GetKeyDown(KeyCode.R))
         {
+            Time.timeScale = 1.0f;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            Time.timeScale = 1.0f;
+            SceneManager.LoadScene("MainMenu");
         }
     }
 

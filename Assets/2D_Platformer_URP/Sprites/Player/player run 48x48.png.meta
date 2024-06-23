@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bf862bf77992ba34ea0b573b3257d69e
+guid: c79c2cbcfb2fdf64cb63256c2988b9fd
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -119,11 +119,24 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player Slide 48x48_0
+      name: player run 48x48_0
       rect:
         serializedVersion: 2
         x: 0
@@ -137,14 +150,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: eac40602e12952142a78e68ac7246dd0
-      internalID: 1612702334
+      spriteID: 31b0e617fe60ddc41a7b8ca0bdcf158f
+      internalID: 721249310
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Slide 48x48_1
+      name: player run 48x48_1
       rect:
         serializedVersion: 2
         x: 48
@@ -158,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 48667a974a9d8764d837767fed048acb
-      internalID: -1592750873
+      spriteID: a1ff035ae7a36094aa088d423cd245e4
+      internalID: -1025111971
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Slide 48x48_2
+      name: player run 48x48_2
       rect:
         serializedVersion: 2
         x: 96
@@ -179,14 +192,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: da38a840827e6f94890b4da555d7b016
-      internalID: 2136350884
+      spriteID: b84df4f07b182634db7310d79cfdcab8
+      internalID: -523833240
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Slide 48x48_3
+      name: player run 48x48_3
       rect:
         serializedVersion: 2
         x: 144
@@ -200,14 +213,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bcbedc841ff51e94494d457fda41ea22
-      internalID: 2110948007
+      spriteID: 054e0144a76b05340b59fb6e9b241292
+      internalID: 177791507
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Slide 48x48_4
+      name: player run 48x48_4
       rect:
         serializedVersion: 2
         x: 192
@@ -221,14 +234,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2d03408afb5c87943862ab9257bc4fff
-      internalID: -302820705
+      spriteID: d45c048093016b04caca23fad3fcc596
+      internalID: -818338639
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Slide 48x48_5
+      name: player run 48x48_5
       rect:
         serializedVersion: 2
         x: 240
@@ -242,14 +255,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2901705b9a9049149ab43682ba577ee1
-      internalID: 1805129949
+      spriteID: c51195d10c751294e8bd5724d66fbfb3
+      internalID: 1810352423
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Slide 48x48_6
+      name: player run 48x48_6
       rect:
         serializedVersion: 2
         x: 288
@@ -263,14 +276,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d59e3905a3a90245b2333e415248d85
-      internalID: 355177014
+      spriteID: a03f5ea42ab26f540b41aaa0d9d4a405
+      internalID: 816743245
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player Slide 48x48_7
+      name: player run 48x48_7
       rect:
         serializedVersion: 2
         x: 336
@@ -284,8 +297,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5a5a35b315e0c8145a96144ae5cb142e
-      internalID: 1479195279
+      spriteID: d8aec38ef45e4c74bb117bd608814e1b
+      internalID: 1278156817
       vertices: []
       indices: 
       edges: []
@@ -301,14 +314,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Player Slide 48x48_0: 1612702334
-      Player Slide 48x48_1: -1592750873
-      Player Slide 48x48_2: 2136350884
-      Player Slide 48x48_3: 2110948007
-      Player Slide 48x48_4: -302820705
-      Player Slide 48x48_5: 1805129949
-      Player Slide 48x48_6: 355177014
-      Player Slide 48x48_7: 1479195279
+      player run 48x48_0: 721249310
+      player run 48x48_1: -1025111971
+      player run 48x48_2: -523833240
+      player run 48x48_3: 177791507
+      player run 48x48_4: -818338639
+      player run 48x48_5: 1810352423
+      player run 48x48_6: 816743245
+      player run 48x48_7: 1278156817
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
