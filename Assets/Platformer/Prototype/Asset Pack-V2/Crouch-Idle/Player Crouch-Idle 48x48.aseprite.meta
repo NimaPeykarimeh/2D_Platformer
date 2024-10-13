@@ -77,6 +77,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -89,6 +90,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -330,6 +332,7 @@ ScriptedImporter:
     cells:
     - name: Player Crouch-Idle 48x48_Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -338,6 +341,7 @@ ScriptedImporter:
       spriteId: 9ea67cd977816ac468429b454d295b59
     - name: Player Crouch-Idle 48x48_Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -346,6 +350,7 @@ ScriptedImporter:
       spriteId: f5815f6084474254ca396382017a853e
     - name: Player Crouch-Idle 48x48_Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -354,6 +359,7 @@ ScriptedImporter:
       spriteId: e114f508df6eb944f96b8c153a46d080
     - name: Player Crouch-Idle 48x48_Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -362,6 +368,7 @@ ScriptedImporter:
       spriteId: 6756d9259dfd6d24296cb5dbef967e0f
     - name: Player Crouch-Idle 48x48_Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -370,6 +377,7 @@ ScriptedImporter:
       spriteId: 04b5e622fbdd76545b7083f1d352e18e
     - name: Player Crouch-Idle 48x48_Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -378,6 +386,7 @@ ScriptedImporter:
       spriteId: 75744759f4c38d94a9e7914aa3aee9cb
     - name: Player Crouch-Idle 48x48_Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -386,6 +395,7 @@ ScriptedImporter:
       spriteId: f5499c9ffbbd4194692a04a15276f76a
     - name: Player Crouch-Idle 48x48_Frame_7
       frameIndex: 7
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -394,6 +404,7 @@ ScriptedImporter:
       spriteId: a048e281785e343449a1f567076e5ed4
     - name: Player Crouch-Idle 48x48_Frame_8
       frameIndex: 8
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -402,6 +413,7 @@ ScriptedImporter:
       spriteId: 4bb19d6deb527474d83984366d3b7d68
     - name: Player Crouch-Idle 48x48_Frame_9
       frameIndex: 9
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -411,6 +423,7 @@ ScriptedImporter:
     linkedCells: []
     parentIndex: -1
   platformSettings: []
+  generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 48, y: 48}

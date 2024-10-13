@@ -77,6 +77,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -89,6 +90,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -310,6 +312,7 @@ ScriptedImporter:
     cells:
     - name: player katana continuous attack 80x64_Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -318,6 +321,7 @@ ScriptedImporter:
       spriteId: d96ed7c5488572648a0f108938b12eda
     - name: player katana continuous attack 80x64_Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -326,6 +330,7 @@ ScriptedImporter:
       spriteId: 3431cdfb7ffae824482964f6873a7168
     - name: player katana continuous attack 80x64_Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -334,6 +339,7 @@ ScriptedImporter:
       spriteId: aa34d7b235185f145a7f398e2c26c12a
     - name: player katana continuous attack 80x64_Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -342,6 +348,7 @@ ScriptedImporter:
       spriteId: 3b73501543754e0448b16510e3fbfed5
     - name: player katana continuous attack 80x64_Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -350,6 +357,7 @@ ScriptedImporter:
       spriteId: e837a4596ba518a4bb12b6ecf1fcfa0d
     - name: player katana continuous attack 80x64_Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -358,6 +366,7 @@ ScriptedImporter:
       spriteId: 313d2113c4a9adc469fea877d7ee2353
     - name: player katana continuous attack 80x64_Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -366,6 +375,7 @@ ScriptedImporter:
       spriteId: 68624f8fdebf02e48820a4cb0163e1a5
     - name: player katana continuous attack 80x64_Frame_7
       frameIndex: 7
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -374,6 +384,7 @@ ScriptedImporter:
       spriteId: 4d15b0696d19bbd468f9f650da194b6b
     - name: player katana continuous attack 80x64_Frame_8
       frameIndex: 8
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -383,6 +394,7 @@ ScriptedImporter:
     linkedCells: []
     parentIndex: -1
   platformSettings: []
+  generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 64}

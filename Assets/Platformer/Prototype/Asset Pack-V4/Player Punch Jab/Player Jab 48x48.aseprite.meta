@@ -77,6 +77,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -89,6 +90,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -330,6 +332,7 @@ ScriptedImporter:
     cells:
     - name: Player Jab 48x48_Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: -8
         y: -8
@@ -338,6 +341,7 @@ ScriptedImporter:
       spriteId: 5bf93d0cd5007f7498fddd6d69929abc
     - name: Player Jab 48x48_Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: -8
         y: -8
@@ -346,6 +350,7 @@ ScriptedImporter:
       spriteId: 77c358c789ba5d1488b19f3c443d6364
     - name: Player Jab 48x48_Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: -8
         y: -8
@@ -354,6 +359,7 @@ ScriptedImporter:
       spriteId: ceeecc40733039141a059813ec0e5b99
     - name: Player Jab 48x48_Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: -8
         y: -8
@@ -362,6 +368,7 @@ ScriptedImporter:
       spriteId: a1ecb00a6ed7ccd4cb7fd3804cc179fd
     - name: Player Jab 48x48_Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: -8
         y: -8
@@ -370,6 +377,7 @@ ScriptedImporter:
       spriteId: d81625863d1c28b45941fdbef783f73c
     - name: Player Jab 48x48_Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: -8
         y: -8
@@ -378,6 +386,7 @@ ScriptedImporter:
       spriteId: 7ecc5c9b4d9e4324aae1227446cb1d4b
     - name: Player Jab 48x48_Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: -8
         y: -8
@@ -386,6 +395,7 @@ ScriptedImporter:
       spriteId: ca3a1db750d5d344a8338288ae0feb86
     - name: Player Jab 48x48_Frame_7
       frameIndex: 7
+      additiveSortOrder: 0
       cellRect:
         x: -8
         y: -8
@@ -394,6 +404,7 @@ ScriptedImporter:
       spriteId: 52740882da68e6f4eacaee60bcaea993
     - name: Player Jab 48x48_Frame_8
       frameIndex: 8
+      additiveSortOrder: 0
       cellRect:
         x: -8
         y: -8
@@ -402,6 +413,7 @@ ScriptedImporter:
       spriteId: ddf484e6916f01845a0437c8fc9e997c
     - name: Player Jab 48x48_Frame_9
       frameIndex: 9
+      additiveSortOrder: 0
       cellRect:
         x: -8
         y: -8
@@ -411,6 +423,7 @@ ScriptedImporter:
     linkedCells: []
     parentIndex: -1
   platformSettings: []
+  generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 48, y: 48}
