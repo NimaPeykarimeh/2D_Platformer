@@ -77,6 +77,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -89,6 +90,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -290,6 +292,7 @@ ScriptedImporter:
     cells:
     - name: Player Punch 64x64_Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 20
         y: 16
@@ -298,6 +301,7 @@ ScriptedImporter:
       spriteId: 9b563fde69770a541bb7093c22447255
     - name: Player Punch 64x64_Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 17
         y: 16
@@ -306,6 +310,7 @@ ScriptedImporter:
       spriteId: a624b9aae0211274e9d767b4226ec951
     - name: Player Punch 64x64_Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 17
         y: 16
@@ -314,6 +319,7 @@ ScriptedImporter:
       spriteId: d275e21a207a8ce4aa4fd4c69946b605
     - name: Player Punch 64x64_Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 18
         y: 16
@@ -322,6 +328,7 @@ ScriptedImporter:
       spriteId: ee1389cb8d577cc4a9850bddebbf74e4
     - name: Player Punch 64x64_Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: 23
         y: 16
@@ -330,6 +337,7 @@ ScriptedImporter:
       spriteId: 0833df2159b549344b53be4856f8eb50
     - name: Player Punch 64x64_Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: 33
         y: 16
@@ -338,6 +346,7 @@ ScriptedImporter:
       spriteId: 8c7172726642ed24386c6687c425401e
     - name: Player Punch 64x64_Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: 33
         y: 16
@@ -346,6 +355,7 @@ ScriptedImporter:
       spriteId: 369b8c3a7ab7433429f8569b53fb2c29
     - name: Player Punch 64x64_Frame_7
       frameIndex: 7
+      additiveSortOrder: 0
       cellRect:
         x: 31
         y: 16
@@ -355,6 +365,7 @@ ScriptedImporter:
     linkedCells: []
     parentIndex: -1
   platformSettings: []
+  generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 64, y: 64}

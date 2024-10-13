@@ -77,6 +77,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -89,6 +90,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -290,6 +292,7 @@ ScriptedImporter:
     cells:
     - name: PlayerWalk 48x48_Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -298,6 +301,7 @@ ScriptedImporter:
       spriteId: 34f6c05ef72e0de4c90363427a70fbed
     - name: PlayerWalk 48x48_Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -306,6 +310,7 @@ ScriptedImporter:
       spriteId: a32c698531e8c144a8376a7917e55225
     - name: PlayerWalk 48x48_Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -314,6 +319,7 @@ ScriptedImporter:
       spriteId: ec0fec05bbd57554ba5d148da9b6e977
     - name: PlayerWalk 48x48_Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -322,6 +328,7 @@ ScriptedImporter:
       spriteId: c72e7423559858342b580add73b1b811
     - name: PlayerWalk 48x48_Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -330,6 +337,7 @@ ScriptedImporter:
       spriteId: 0c6269e6d629c344a950c64effe6dfde
     - name: PlayerWalk 48x48_Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -338,6 +346,7 @@ ScriptedImporter:
       spriteId: afa260a9248260743b2b65395d6b2aec
     - name: PlayerWalk 48x48_Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -346,6 +355,7 @@ ScriptedImporter:
       spriteId: 6360e342aefc47648a153ea2382d0d0e
     - name: PlayerWalk 48x48_Frame_7
       frameIndex: 7
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -355,6 +365,7 @@ ScriptedImporter:
     linkedCells: []
     parentIndex: -1
   platformSettings: []
+  generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 48, y: 48}

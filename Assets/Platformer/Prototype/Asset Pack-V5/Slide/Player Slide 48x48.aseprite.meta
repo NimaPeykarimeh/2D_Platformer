@@ -77,6 +77,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -89,6 +90,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -290,6 +292,7 @@ ScriptedImporter:
     cells:
     - name: Player Slide 48x48_Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 4
         y: 10
@@ -298,6 +301,7 @@ ScriptedImporter:
       spriteId: db73d7a010d43b243b1bf39072dce74a
     - name: Player Slide 48x48_Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 5
         y: 10
@@ -306,6 +310,7 @@ ScriptedImporter:
       spriteId: 94eb53eb1e161f0478cf3ce36f45124d
     - name: Player Slide 48x48_Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 5
         y: 10
@@ -314,6 +319,7 @@ ScriptedImporter:
       spriteId: 27bcc7e2e6727a74fae4f83935e2e2c8
     - name: Player Slide 48x48_Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 5
         y: 10
@@ -322,6 +328,7 @@ ScriptedImporter:
       spriteId: e1b71fcb75b5fc4458eadd0c58ae1b67
     - name: Player Slide 48x48_Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: 6
         y: 10
@@ -330,6 +337,7 @@ ScriptedImporter:
       spriteId: 9061c7133ff34e94fb03446f0d7ea88c
     - name: Player Slide 48x48_Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: 5
         y: 10
@@ -338,6 +346,7 @@ ScriptedImporter:
       spriteId: e31f5d3e60a463f4abf859f2aa0ee360
     - name: Player Slide 48x48_Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: 5
         y: 10
@@ -346,6 +355,7 @@ ScriptedImporter:
       spriteId: 57950fb9d0c12064db48bc518c20c6dd
     - name: Player Slide 48x48_Frame_7
       frameIndex: 7
+      additiveSortOrder: 0
       cellRect:
         x: 4
         y: 10
@@ -355,6 +365,7 @@ ScriptedImporter:
     linkedCells: []
     parentIndex: -1
   platformSettings: []
+  generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 48, y: 48}

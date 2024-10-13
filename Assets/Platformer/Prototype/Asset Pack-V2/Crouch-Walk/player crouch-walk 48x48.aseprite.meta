@@ -77,6 +77,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -89,6 +90,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -330,6 +332,7 @@ ScriptedImporter:
     cells:
     - name: player crouch-walk 48x48_Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -338,6 +341,7 @@ ScriptedImporter:
       spriteId: 6e0bd3757ea4bec4ab68d92587075e6a
     - name: player crouch-walk 48x48_Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -346,6 +350,7 @@ ScriptedImporter:
       spriteId: 24fc872e64b806a4bbaf9442019b8db5
     - name: player crouch-walk 48x48_Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -354,6 +359,7 @@ ScriptedImporter:
       spriteId: 49e398f4f881a394fb9e6574bb807ac6
     - name: player crouch-walk 48x48_Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -362,6 +368,7 @@ ScriptedImporter:
       spriteId: f50a7c954a76f254ebed05addf63193d
     - name: player crouch-walk 48x48_Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -370,6 +377,7 @@ ScriptedImporter:
       spriteId: 2c6999f9d95f28542a8ca2db9de83a5b
     - name: player crouch-walk 48x48_Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -378,6 +386,7 @@ ScriptedImporter:
       spriteId: f4d863cd7b0beb14da9d07eebf276ace
     - name: player crouch-walk 48x48_Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -386,6 +395,7 @@ ScriptedImporter:
       spriteId: bbda0847dd36cfc4daac23d7dafd490a
     - name: player crouch-walk 48x48_Frame_7
       frameIndex: 7
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -394,6 +404,7 @@ ScriptedImporter:
       spriteId: 69a56aefb6e3e164d8cfed7308d0a103
     - name: player crouch-walk 48x48_Frame_8
       frameIndex: 8
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -402,6 +413,7 @@ ScriptedImporter:
       spriteId: acb66f03c57a3184f953d94af9c50a41
     - name: player crouch-walk 48x48_Frame_9
       frameIndex: 9
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -411,6 +423,7 @@ ScriptedImporter:
     linkedCells: []
     parentIndex: -1
   platformSettings: []
+  generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 48, y: 48}

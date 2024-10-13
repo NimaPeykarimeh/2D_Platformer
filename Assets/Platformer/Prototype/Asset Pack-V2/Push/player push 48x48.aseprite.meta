@@ -77,6 +77,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -89,6 +90,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -330,6 +332,7 @@ ScriptedImporter:
     cells:
     - name: player push 48x48_Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -338,6 +341,7 @@ ScriptedImporter:
       spriteId: 6b432e1f17256b2419fc56dcbce78c95
     - name: player push 48x48_Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -346,6 +350,7 @@ ScriptedImporter:
       spriteId: cab0c88ec0e6445459bcd4f348b1a969
     - name: player push 48x48_Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -354,6 +359,7 @@ ScriptedImporter:
       spriteId: 2674d2b7e08c5144991e1dec12ffe15a
     - name: player push 48x48_Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -362,6 +368,7 @@ ScriptedImporter:
       spriteId: 4098955c881e12b4984c3fed55ccf774
     - name: player push 48x48_Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -370,6 +377,7 @@ ScriptedImporter:
       spriteId: c9215cc8ee7744443927bf3b800ea6fa
     - name: player push 48x48_Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -378,6 +386,7 @@ ScriptedImporter:
       spriteId: 9ff26c77585fc6e48af3b118c2271db5
     - name: player push 48x48_Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -386,6 +395,7 @@ ScriptedImporter:
       spriteId: b6b83d4a23815f944a79b8ccc15d7697
     - name: player push 48x48_Frame_7
       frameIndex: 7
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -394,6 +404,7 @@ ScriptedImporter:
       spriteId: f4c93150ffb76194685e45edcf5f1806
     - name: player push 48x48_Frame_8
       frameIndex: 8
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -402,6 +413,7 @@ ScriptedImporter:
       spriteId: 178130b5515359d4892647bba179d84a
     - name: player push 48x48_Frame_9
       frameIndex: 9
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -411,6 +423,7 @@ ScriptedImporter:
     linkedCells: []
     parentIndex: -1
   platformSettings: []
+  generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 48, y: 48}

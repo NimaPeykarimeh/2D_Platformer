@@ -77,6 +77,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -89,6 +90,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -330,6 +332,7 @@ ScriptedImporter:
     cells:
     - name: Player Idle 48x48_Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -338,6 +341,7 @@ ScriptedImporter:
       spriteId: f76590599ed7bcc4baea6bf0acb50ced
     - name: Player Idle 48x48_Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -346,6 +350,7 @@ ScriptedImporter:
       spriteId: f194656c975310b449a4bea5b4b37ba5
     - name: Player Idle 48x48_Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -354,6 +359,7 @@ ScriptedImporter:
       spriteId: 5fb1ae7422016b14fb6b148f53e2d4eb
     - name: Player Idle 48x48_Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -362,6 +368,7 @@ ScriptedImporter:
       spriteId: 6cc1807f2c914684985bab793e38bd0a
     - name: Player Idle 48x48_Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -370,6 +377,7 @@ ScriptedImporter:
       spriteId: 320862972c71e1f4aabbb406b3322f99
     - name: Player Idle 48x48_Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -378,6 +386,7 @@ ScriptedImporter:
       spriteId: d3514c32c8bb11d45a87f9200cd2a414
     - name: Player Idle 48x48_Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -386,6 +395,7 @@ ScriptedImporter:
       spriteId: ae87edc2eec2881458881e91b46ead4b
     - name: Player Idle 48x48_Frame_7
       frameIndex: 7
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -394,6 +404,7 @@ ScriptedImporter:
       spriteId: 83256e854b2f738439c2d489b6e33f39
     - name: Player Idle 48x48_Frame_8
       frameIndex: 8
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -402,6 +413,7 @@ ScriptedImporter:
       spriteId: 2e7bf2bfde318c44aa0d1a2ce23e97bf
     - name: Player Idle 48x48_Frame_9
       frameIndex: 9
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -411,6 +423,7 @@ ScriptedImporter:
     linkedCells: []
     parentIndex: -1
   platformSettings: []
+  generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 48, y: 48}

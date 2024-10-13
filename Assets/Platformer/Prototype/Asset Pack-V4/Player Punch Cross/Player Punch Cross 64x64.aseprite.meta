@@ -77,6 +77,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -89,6 +90,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -270,6 +272,7 @@ ScriptedImporter:
     cells:
     - name: Player Punch Cross 64x64_Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -278,6 +281,7 @@ ScriptedImporter:
       spriteId: e139f95657270814aade9e4e4bbbf18c
     - name: Player Punch Cross 64x64_Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -286,6 +290,7 @@ ScriptedImporter:
       spriteId: d7e63a13846385a4f8ff4eb8f5001876
     - name: Player Punch Cross 64x64_Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -294,6 +299,7 @@ ScriptedImporter:
       spriteId: 5633d9a32dbe99645af8b91054ecb10d
     - name: Player Punch Cross 64x64_Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -302,6 +308,7 @@ ScriptedImporter:
       spriteId: e995b702543b20b4697e7d9d9384daf6
     - name: Player Punch Cross 64x64_Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -310,6 +317,7 @@ ScriptedImporter:
       spriteId: 4bbd360e4bced8949b03b050522a1479
     - name: Player Punch Cross 64x64_Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -318,6 +326,7 @@ ScriptedImporter:
       spriteId: 2ec08f8edb4799a4296393e69de266ab
     - name: Player Punch Cross 64x64_Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -327,6 +336,7 @@ ScriptedImporter:
     linkedCells: []
     parentIndex: -1
   platformSettings: []
+  generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 64, y: 64}

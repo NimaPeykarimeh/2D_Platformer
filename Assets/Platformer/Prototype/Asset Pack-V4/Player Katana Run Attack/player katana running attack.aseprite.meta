@@ -77,6 +77,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -89,6 +90,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -450,6 +452,7 @@ ScriptedImporter:
     cells:
     - name: player katana running attack_Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -458,6 +461,7 @@ ScriptedImporter:
       spriteId: a5b76d0fc735d744d837fff636262b97
     - name: player katana running attack_Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -466,6 +470,7 @@ ScriptedImporter:
       spriteId: b01b49df6d880bd4e9d38aba6f952084
     - name: player katana running attack_Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -474,6 +479,7 @@ ScriptedImporter:
       spriteId: 97c2537a63e8ef847a12ce179624565b
     - name: player katana running attack_Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -482,6 +488,7 @@ ScriptedImporter:
       spriteId: d4e30d1d946438943b97c87f1e75aad1
     - name: player katana running attack_Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -490,6 +497,7 @@ ScriptedImporter:
       spriteId: 7d76abe0770122645a5b8f4314001dd0
     - name: player katana running attack_Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -498,6 +506,7 @@ ScriptedImporter:
       spriteId: 08a848c358b043345b5199ef6465e0ca
     - name: player katana running attack_Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -506,6 +515,7 @@ ScriptedImporter:
       spriteId: a36f1d8b9d31cb146b6d7ecf05e0a439
     - name: player katana running attack_Frame_7
       frameIndex: 7
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -514,6 +524,7 @@ ScriptedImporter:
       spriteId: 3b13a4fbb015bf842be2ae391bbc5dd8
     - name: player katana running attack_Frame_8
       frameIndex: 8
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -522,6 +533,7 @@ ScriptedImporter:
       spriteId: 5741aadea4f34ee48808df5bf19f7cd1
     - name: player katana running attack_Frame_9
       frameIndex: 9
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -530,6 +542,7 @@ ScriptedImporter:
       spriteId: f8fb69491a1bad24588b34c0b3c5e3f1
     - name: player katana running attack_Frame_10
       frameIndex: 10
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -538,6 +551,7 @@ ScriptedImporter:
       spriteId: dcc7b44b7780adc43a8b3d8776c05317
     - name: player katana running attack_Frame_11
       frameIndex: 11
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -546,6 +560,7 @@ ScriptedImporter:
       spriteId: c19999c5acfa05a4aa0c2704f69b0519
     - name: player katana running attack_Frame_12
       frameIndex: 12
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -554,6 +569,7 @@ ScriptedImporter:
       spriteId: f3275fe6c94dc0643840723b0f50fbc6
     - name: player katana running attack_Frame_13
       frameIndex: 13
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -562,6 +578,7 @@ ScriptedImporter:
       spriteId: 465bc456a611b6f40ae060fe7bcfef48
     - name: player katana running attack_Frame_14
       frameIndex: 14
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -570,6 +587,7 @@ ScriptedImporter:
       spriteId: 5eef7eaad05a8304aa19ee24c77c8fbf
     - name: player katana running attack_Frame_15
       frameIndex: 15
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -579,6 +597,7 @@ ScriptedImporter:
     linkedCells: []
     parentIndex: -1
   platformSettings: []
+  generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 80, y: 64}

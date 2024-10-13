@@ -77,6 +77,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -89,6 +90,7 @@ ScriptedImporter:
     defaultPivotSpace: 0
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
+    mosaicPadding: 4
     spritePadding: 0
     generateModelPrefab: 1
     generateAnimationClips: 1
@@ -330,6 +332,7 @@ ScriptedImporter:
     cells:
     - name: Player Sword Idle 48x48_Frame_0
       frameIndex: 0
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -338,6 +341,7 @@ ScriptedImporter:
       spriteId: b185edeb3a37b044f95970ecafcf4d53
     - name: Player Sword Idle 48x48_Frame_1
       frameIndex: 1
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -346,6 +350,7 @@ ScriptedImporter:
       spriteId: 92f69dcdf900cc9448fcd5065de873da
     - name: Player Sword Idle 48x48_Frame_2
       frameIndex: 2
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -354,6 +359,7 @@ ScriptedImporter:
       spriteId: 88ccb24d907ae4745ba8a4b2a28516e0
     - name: Player Sword Idle 48x48_Frame_3
       frameIndex: 3
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -362,6 +368,7 @@ ScriptedImporter:
       spriteId: 8686f667f6cd8e540bb1ba4df982d7e1
     - name: Player Sword Idle 48x48_Frame_4
       frameIndex: 4
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -370,6 +377,7 @@ ScriptedImporter:
       spriteId: 7f4556781efefcb48a1b8a1c0e6a32d4
     - name: Player Sword Idle 48x48_Frame_5
       frameIndex: 5
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -378,6 +386,7 @@ ScriptedImporter:
       spriteId: c21df771c0880b94fb0da34ed998daee
     - name: Player Sword Idle 48x48_Frame_6
       frameIndex: 6
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -386,6 +395,7 @@ ScriptedImporter:
       spriteId: 670a119260129a04bb077cdbbe19cd6a
     - name: Player Sword Idle 48x48_Frame_7
       frameIndex: 7
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -394,6 +404,7 @@ ScriptedImporter:
       spriteId: 306b3ef9736238040b218b750f97cfaf
     - name: Player Sword Idle 48x48_Frame_8
       frameIndex: 8
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -402,6 +413,7 @@ ScriptedImporter:
       spriteId: d1b3ea71cc9158644b5292dfaf4b6288
     - name: Player Sword Idle 48x48_Frame_9
       frameIndex: 9
+      additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
@@ -411,6 +423,7 @@ ScriptedImporter:
     linkedCells: []
     parentIndex: -1
   platformSettings: []
+  generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 48, y: 48}
