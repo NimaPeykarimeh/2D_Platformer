@@ -1,19 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ButtonController : MonoBehaviour
+namespace Peykarimeh.PlatformerToolkit
 {
-    private void Start()
+    public class ButtonController : MonoBehaviour
     {
-        if (RaceTimer.instance != null)
+        private void Start()
         {
-            Destroy(RaceTimer.instance.gameObject);
+            if (RaceTimer.instance != null)
+            {
+                Destroy(RaceTimer.instance.gameObject);
+            }
         }
-    }
-    public void LoadScene(string SceneName)
-    {
-        SceneManager.LoadScene(SceneName);
+        public void LoadScene(string SceneName)
+        {
+            SceneManager.LoadScene(SceneName);
+        }
     }
 }

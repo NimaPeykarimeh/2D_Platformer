@@ -1,21 +1,24 @@
 using UnityEngine;
 
-public class TeleportOnFall : MonoBehaviour
+namespace Peykarimeh.PlatformerToolkit
 {
-    [SerializeField] Transform teleportPos;
-
-
-    private void Awake()
+    public class TeleportOnFall : MonoBehaviour
     {
-        teleportPos = transform.GetChild(0).transform;
-    }
+        [SerializeField] Transform teleportPos;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
+
+        private void Awake()
         {
-            collision.transform.position = teleportPos.position;
-            Camera.main.transform.position = teleportPos.position;
+            teleportPos = transform.GetChild(0).transform;
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.CompareTag("Player"))
+            {
+                collision.transform.position = teleportPos.position;
+                Camera.main.transform.position = teleportPos.position;
+            }
         }
     }
 }
