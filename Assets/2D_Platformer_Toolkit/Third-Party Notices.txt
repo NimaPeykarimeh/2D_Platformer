@@ -1,0 +1,14 @@
+THIRD-PARTY NOTICES
+
+This package includes third-party content used under the Creative Commons Attribution 4.0 International (CC BY 4.0) license.
+
+------------------------------------------------------------
+Asset: 2D Pixel Art Character Template
+Author: ZeggyGames
+License: CC BY 4.0
+Source: https://zegley.itch.io/2d-platformermetroidvania-asset-pack
+
+This content is used with permission. You are free to use or modify these assets under the terms of the CC BY 4.0 license. Please credit ZeggyGames when distributing derivative work.
+
+For full license text, visit: https://creativecommons.org/licenses/by/4.0/
+------------------------------------------------------------
