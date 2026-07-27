@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2D Platformer Toolkit Documentation</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <h2>2D Platformer<br><span>Toolkit</span></h2>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#overview" class="nav-link active">Overview</a></li>
+            <li><a href="#movement2d" class="nav-link">Movement2D</a></li>
+            <li><a href="#animation" class="nav-link">AnimationController</a></li>
+            <li><a href="#camera" class="nav-link">CameraFollow</a></li>
+            <li><a href="#pause" class="nav-link">PauseManager</a></li>
+            <li><a href="#timer" class="nav-link">RaceTimer</a></li>
+            <li><a href="#triggers" class="nav-link">Triggers</a></li>
+            <li><a href="#utilities" class="nav-link">Utilities</a></li>
+            <li><a href="#setup" class="nav-link">Setup Guide</a></li>
+            <li><a href="#architecture" class="nav-link">Architecture</a></li>
+        </ul>
+    </nav>
+
+    <main class="main-content">
+        <header class="page-header">
+            <h1>2D Platformer Toolkit Documentation</h1>
+            <p class="subtitle">Complete guide to building 2D platformer games in Unity</p>
+        </header>
+
+        <section id="overview" class="content-section">
+            <h2>Project Overview</h2>
+            <div class="card">
+                <p>The 2D Platformer Toolkit is a comprehensive Unity-based system for creating professional 2D platformer games. It provides a complete set of scripts for player movement, animation, camera control, UI management, and game mechanics.</p>
+                <div class="info-box">
+                    <strong>Namespace:</strong> <code>Peykarimeh.PlatformerToolkit</code>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>🎮 Advanced Movement</h3>
+                        <p>Smooth player controls with jumping, dashing, wall-jumping, and ledge grabbing</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🎬 Animation System</h3>
+                        <p>Seamless integration with Unity's Animator for fluid character animations</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📹 Smart Camera</h3>
+                        <p>Smooth camera following with customizable speed and offset controls</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>⏱️ Racing System</h3>
+                        <p>Built-in timer with high score tracking for speedrunning games</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="movement2d" class="content-section">
+            <h2>Movement2D</h2>
+            <div class="card">
+                <p class="component-description">The core component that handles all player movement mechanics and physics.</p>
+                
+                <h3>Key Features</h3>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <h4>Basic Movement</h4>
+                        <ul>
+                            <li>Smooth horizontal movement with acceleration/deceleration</li>
+                            <li>Configurable movement speed (1-10 range)</li>
+                            <li>Customizable speed up/down durations</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <h4>Jumping System</h4>
+                        <ul>
+                            <li><strong>Variable Jump Height:</strong> Hold jump button for higher jumps</li>
+                            <li><strong>Coyote Time:</strong> Grace period for jumping after leaving platform</li>
+                            <li><strong>Jump Buffering:</strong> Register jump input before landing</li>
+                            <li>Configurable jump height and acceleration</li>
+                            <li>Separate up/down gravity acceleration</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <h4>Wall Jump Mechanics</h4>
+                        <ul>
+                            <li>Wall sliding with customizable slide speed</li>
+                            <li>Wall jump with directional velocity</li>
+                            <li>Input delay after wall jump for better control</li>
+                            <li>Variable jump height on wall jumps</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <h4>Dash System</h4>
+                        <ul>
+                            <li>Horizontal and/or vertical dashing</li>
+                            <li>Configurable dash distance, duration, and cooldown</li>
+                            <li>Reset dash on ground or wall</li>
+                            <li>Air dash capability</li>
+                            <li>Collider adjustment for sliding under obstacles</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <h4>Ledge Grab/Climb</h4>
+                        <ul>
+                            <li>Automatic or manual ledge grabbing</li>
+                            <li>Smooth ledge climbing animation</li>
+                            <li>Optional wall jump while climbing</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Player States</h3>
+                <div class="code-block">
+                    <pre><code>public enum PlayerStates
+{
+    None,      // Initial state
+    Grounded,  // Player on ground
+    Jumping,   // Player ascending
+    Falling    // Player descending
+}</code></pre>
+                </div>
+
+                <h3>Required Components</h3>
+                <ul class="requirement-list">
+                    <li><code>Rigidbody2D</code> (automatically configured)</li>
+                    <li><code>CapsuleCollider2D</code></li>
+                    <li>Child GameObject with sprite/animator</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="animation" class="content-section">
+            <h2>AnimationController</h2>
+            <div class="card">
+                <p class="component-description">Bridges movement data to Unity's Animator for smooth character animations.</p>
+                
+                <h3>Animator Parameters</h3>
+                <table class="params-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>Dashing</code></td>
+                            <td>Bool</td>
+                            <td>Is player currently dashing</td>
+                        </tr>
+                        <tr>
+                            <td><code>JumpSpeed</code></td>
+                            <td>Float</td>
+                            <td>Current vertical speed</td>
+                        </tr>
+                        <tr>
+                            <td><code>MovementSpeed</code></td>
+                            <td>Float</td>
+                            <td>Absolute horizontal speed</td>
+                        </tr>
+                        <tr>
+                            <td><code>Grounded</code></td>
+                            <td>Bool</td>
+                            <td>Is player on ground</td>
+                        </tr>
+                        <tr>
+                            <td><code>OnWallHit</code></td>
+                            <td>Bool</td>
+                            <td>Is touching wall with wall jump enabled</td>
+                        </tr>
+                        <tr>
+                            <td><code>OnLedge</code></td>
+                            <td>Bool</td>
+                            <td>Is player on ledge</td>
+                        </tr>
+                        <tr>
+                            <td><code>ClimbLedge</code></td>
+                            <td>Bool</td>
+                            <td>Is player climbing ledge</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Usage</h3>
+                <p>Attach to player GameObject alongside Movement2D and Animator components. The controller automatically updates animator parameters each frame based on movement state.</p>
+            </div>
+        </section>
+
+        <section id="camera" class="content-section">
+            <h2>CameraFollow</h2>
+            <div class="card">
+                <p class="component-description">Smooth camera following system with customizable behavior.</p>
+                
+                <h3>Features</h3>
+                <ul>
+                    <li><strong>Smooth Following:</strong> Lerp-based camera movement for natural feel</li>
+                    <li><strong>Offset Control:</strong> Customizable camera offset from target</li>
+                    <li><strong>Speed Multipliers:</strong> Different follow speeds for X, Y, Z axes</li>
+                    <li><strong>Vertical Damping:</strong> Dynamic Y-axis smoothing based on distance</li>
+                </ul>
+
+                <h3>Parameters</h3>
+                <table class="params-table">
+                    <thead>
+                        <tr>
+                            <th>Parameter</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>objectToFollow</code></td>
+                            <td>Transform</td>
+                            <td>Target to follow (usually player)</td>
+                        </tr>
+                        <tr>
+                            <td><code>offset</code></td>
+                            <td>Vector3</td>
+                            <td>Camera offset position (default: 0, 0, -10)</td>
+                        </tr>
+                        <tr>
+                            <td><code>speedMultiplier</code></td>
+                            <td>Vector3</td>
+                            <td>Per-axis speed multipliers</td>
+                        </tr>
+                        <tr>
+                            <td><code>speed</code></td>
+                            <td>Float (0-1)</td>
+                            <td>Overall follow speed</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="pause" class="content-section">
+            <h2>PauseManager</h2>
+            <div class="card">
+                <p class="component-description">Handles game pause functionality and quick actions.</p>
+                
+                <h3>Keybindings</h3>
+                <table class="params-table">
+                    <thead>
+                        <tr>
+                            <th>Key</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><kbd>ESC</kbd></td>
+                            <td>Toggle pause game</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>R</kbd></td>
+                            <td>Restart current level</td>
+                        </tr>
+                        <tr>
+                            <td><kbd>M</kbd></td>
+                            <td>Return to main menu</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Features</h3>
+                <ul>
+                    <li>Time scale control (freeze/unfreeze game)</li>
+                    <li>Pause panel UI management</li>
+                    <li>Scene reloading capability</li>
+                    <li>Automatic time scale reset</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="timer" class="content-section">
+            <h2>RaceTimer</h2>
+            <div class="card">
+                <p class="component-description">Singleton timer system for tracking race/speedrun times.</p>
+                
+                <h3>Features</h3>
+                <ul>
+                    <li><strong>Persistent Timer:</strong> Survives scene transitions (DontDestroyOnLoad)</li>
+                    <li><strong>High Score Tracking:</strong> Automatically tracks best time</li>
+                    <li><strong>TextMeshPro Integration:</strong> Real-time UI updates</li>
+                    <li><strong>Start/Stop Control:</strong> Trigger-based race timing</li>
+                </ul>
+
+                <h3>Public Methods</h3>
+                <div class="code-block">
+                    <pre><code>// Begin timing
+public void StartRace()
+
+// Stop timing and check high score
+public void FinishRace()
+
+// Reset timer to zero
+public void ResetTimer()</code></pre>
+                </div>
+
+                <h3>Display Format</h3>
+                <p>Time is displayed as: <code>0.000</code> (seconds with 3 decimal places)</p>
+            </div>
+        </section>
+
+        <section id="triggers" class="content-section">
+            <h2>Trigger Systems</h2>
+            <div class="card">
+                <h3>StartFinishCheck</h3>
+                <p class="component-description">Trigger handler for race start and finish lines.</p>
+                
+                <h4>Required Setup:</h4>
+                <ul>
+                    <li>GameObject with trigger collider</li>
+                    <li>Objects tagged as "Start" or "Finish"</li>
+                    <li>Player tagged as "Player"</li>
+                </ul>
+
+                <h4>Functionality:</h4>
+                <ul>
+                    <li><strong>OnTriggerExit (Start):</strong> Begins race timer</li>
+                    <li><strong>OnTriggerEnter (Finish):</strong> Stops race timer</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>TeleportOnFall</h3>
+                <p class="component-description">Respawn system for when player falls off map.</p>
+                
+                <h4>Setup:</h4>
+                <ul>
+                    <li>Attach to trigger zone (death zone)</li>
+                    <li>Add child GameObject as respawn point</li>
+                    <li>Tag player as "Player"</li>
+                </ul>
+
+                <h4>Behavior:</h4>
+                <p>When player enters trigger:</p>
+                <ul>
+                    <li>Teleports player to respawn point</li>
+                    <li>Moves camera to respawn point</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="utilities" class="content-section">
+            <h2>Utilities</h2>
+            <div class="card">
+                <h3>ButtonController</h3>
+                <p class="component-description">UI button handler for scene management.</p>
+                
+                <h4>Features:</h4>
+                <ul>
+                    <li>Scene loading by name</li>
+                    <li>Automatically destroys RaceTimer instance when returning to menu</li>
+                </ul>
+
+                <h4>Public Method:</h4>
+                <div class="code-block">
+                    <pre><code>public void LoadScene(string SceneName)</code></pre>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>SetPlayerToSceneViewPosition</h3>
+                <p class="component-description">Editor tool for testing player from Scene View position.</p>
+                
+                <h4>Features (Editor Only):</h4>
+                <ul>
+                    <li><strong>Quick Testing:</strong> Start game with player at Scene View position</li>
+                    <li><strong>Visual Crosshair:</strong> Shows spawn point in Scene View</li>
+                    <li><strong>Auto-Configuration:</strong> Updates position when entering play mode</li>
+                </ul>
+
+                <h4>Parameters:</h4>
+                <ul>
+                    <li><code>SetToView</code> - Enable/disable feature</li>
+                    <li><code>CrossColor</code> - Crosshair color in Scene View</li>
+                    <li><code>crossSize</code> - Size of crosshair indicator</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="setup" class="content-section">
+            <h2>Setup Guide</h2>
+            <div class="card">
+                <h3>Basic Player Setup</h3>
+                <ol class="setup-steps">
+                    <li>Create GameObject for player</li>
+                    <li>Add <code>Movement2D</code> component</li>
+                    <li>Add <code>Rigidbody2D</code> and <code>CapsuleCollider2D</code> (auto-configured)</li>
+                    <li>Create child GameObject with <code>SpriteRenderer</code> and <code>Animator</code></li>
+                    <li>Add <code>AnimationController</code> component</li>
+                    <li>Configure movement parameters in inspector</li>
+                    <li>Set up Animator with required parameters</li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h3>Camera Setup</h3>
+                <ol class="setup-steps">
+                    <li>Add <code>CameraFollow</code> to main camera</li>
+                    <li>Assign player transform as target</li>
+                    <li>Adjust offset and speed settings</li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h3>Race/Timer Setup</h3>
+                <ol class="setup-steps">
+                    <li>Create empty GameObject for timer</li>
+                    <li>Add <code>RaceTimer</code> component</li>
+                    <li>Link TextMeshPro UI elements</li>
+                    <li>Add trigger colliders for start/finish</li>
+                    <li>Tag them appropriately ("Start", "Finish")</li>
+                    <li>Add <code>StartFinishCheck</code> to player</li>
+                </ol>
+            </div>
+
+            <div class="card">
+                <h3>Required Unity Setup</h3>
+                <h4>Layers:</h4>
+                <ul>
+                    <li>Ground layer</li>
+                    <li>Wall layer</li>
+                    <li>Ceiling layer</li>
+                    <li>Ledge layer</li>
+                </ul>
+
+                <h4>Tags:</h4>
+                <ul>
+                    <li>"Player"</li>
+                    <li>"Start"</li>
+                    <li>"Finish"</li>
+                </ul>
+
+                <h4>Input Settings:</h4>
+                <ul>
+                    <li>Horizontal axis</li>
+                    <li>Vertical axis</li>
+                    <li>Jump button (default: Space)</li>
+                    <li>Dash button (default: LeftShift)</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="architecture" class="content-section">
+            <h2>System Architecture</h2>
+            <div class="card">
+                <h3>Dependency Relationships</h3>
+                <div class="architecture-diagram">
+                    <div class="arch-box">
+                        <h4>Movement2D (Core)</h4>
+                        <ul>
+                            <li>→ AnimationController (Requires Movement2D)</li>
+                            <li>→ StartFinishCheck (Optional, for racing)</li>
+                            <li>→ TeleportOnFall (Optional, for respawn)</li>
+                        </ul>
+                    </div>
+                    <div class="arch-box">
+                        <h4>CameraFollow (Independent)</h4>
+                        <ul>
+                            <li>→ Tracks Movement2D's GameObject</li>
+                        </ul>
+                    </div>
+                    <div class="arch-box">
+                        <h4>RaceTimer (Singleton)</h4>
+                        <ul>
+                            <li>→ StartFinishCheck (Controls timer)</li>
+                            <li>→ ButtonController (Cleanup on menu)</li>
+                        </ul>
+                    </div>
+                    <div class="arch-box">
+                        <h4>PauseManager (Independent)</h4>
+                    </div>
+                </div>
+
+                <h3>Update Loops</h3>
+                <ul>
+                    <li><code>Update()</code> - Input handling and state logic</li>
+                    <li><code>FixedUpdate()</code> - Physics calculations and movement</li>
+                    <li><code>LateUpdate()</code> - Camera following (CameraFollow)</li>
+                </ul>
+
+                <h3>Technical Notes</h3>
+                <h4>Physics:</h4>
+                <ul>
+                    <li>Uses <code>Rigidbody2D.linearVelocity</code> for movement</li>
+                    <li>Custom gravity implementation</li>
+                    <li>CircleCast for ground/ceiling detection</li>
+                    <li>Raycast for wall detection</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer class="page-footer">
+            <div class="footer-content">
+                <p><strong>2D Platformer Toolkit</strong> by Peykarimeh</p>
+                <p>Unity 2021.3+ | Dependencies: TextMeshPro, Unity 2D Physics</p>
+            </div>
+        </footer>
+    </main>
+
+    <button id="scroll-top" class="scroll-top" title="Back to top">↑</button>
+
+    <script src="script.js"></script>
+</body>
+</html>

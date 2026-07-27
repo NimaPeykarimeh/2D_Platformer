@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2D Platformer Toolkit Documentation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>2D Platformer Toolkit Documentation</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#core-scripts">Core Scripts</a></li>
+            <li><a href="#camera-animation">Camera & Animation</a></li>
+            <li><a href="#game-logic">Game Logic</a></li>
+            <li><a href="#editor-tools">Editor Tools</a></li>
+            <li><a href="#how-to-use">How to Use</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="introduction">
+            <h2>Introduction</h2>
+            <p>This document provides an overview of the scripts within the 2D Platformer Toolkit project. The toolkit is designed to provide a comprehensive set of scripts for creating a 2D platformer game in Unity.</p>
+        </section>
+
+        <section id="core-scripts">
+            <h2>Core Scripts</h2>
+            <article>
+                <h3>Movement2D.cs</h3>
+                <p>This is the heart of the toolkit. It's a robust character controller for 2D platformer games.</p>
+                <h4>Features:</h4>
+                <ul>
+                    <li><strong>Basic Movement:</strong> Standard left/right movement with acceleration and deceleration.</li>
+                    <li><strong>Jumping:</strong> Includes features like coyote time, jump buffering, and variable jump height.</li>
+                    <li><strong>Wall Jump & Slide:</strong> Allows the player to slide down walls and jump off them.</li>
+                    <li><strong>Dashing:</strong> Horizontal and vertical dashing with cooldowns and reset conditions.</li>
+                    <li><strong>Ledge Grab & Climb:</strong> Allows the player to grab onto ledges and climb up.</li>
+                    <li><strong>Customizable:</strong> A large number of public variables to tweak the feel of the controller.</li>
+                    <li><strong>State Machine:</strong> A simple state machine to track the player's current state (Grounded, Jumping, Falling).</li>
+                </ul>
+            </article>
+            <article>
+                <h3>Movement2DEditor.cs</h3>
+                <p>A custom Unity Editor script for <code>Movement2D.cs</code>. It provides a much more organized and user-friendly inspector for tweaking the player's movement properties. It groups related variables under headers and provides tooltips and debugging information.</p>
+            </article>
+        </section>
+
+        <section id="camera-animation">
+            <h2>Camera & Animation</h2>
+            <article>
+                <h3>CameraFollow.cs</h3>
+                <p>A simple script to make the camera follow a target object (the player) smoothly. It includes adjustable smoothing and offset.</p>
+            </article>
+            <article>
+                <h3>AnimationController.cs</h3>
+                <p>This script bridges the <code>Movement2D</code> script and the player's <code>Animator</code> component. It sets animator parameters based on the player's current state (e.g., <code>isDashing</code>, <code>isGrounded</code>, <code>currentVerticalSpeed</code>).</p>
+            </article>
+        </section>
+
+        <section id="game-logic">
+            <h2>Game Logic</h2>
+            <article>
+                <h3>RaceTimer.cs</h3>
+                <p>A singleton script that implements a race timer. It can be started and stopped, and it keeps track of the high score.</p>
+            </article>
+            <article>
+                <h3>StartFinishCheck.cs</h3>
+                <p>Works in conjunction with <code>RaceTimer.cs</code>. It uses trigger colliders to detect when the player passes through the start and finish lines of a race, controlling the timer accordingly.</p>
+            </article>
+            <article>
+                <h3>PauseManager.cs</h3>
+                <p>A simple script to pause and unpause the game. It also handles restarting the level and returning to the main menu.</p>
+            </article>
+            <article>
+                <h3>ButtonController.cs</h3>
+                <p>A simple script for handling UI button clicks, specifically for loading scenes.</p>
+            </article>
+            <article>
+                <h3>TeleportOnFall.cs</h3>
+                <p>A script that teleports the player to a specific position if they fall into a trigger collider. This is useful for handling pits and death zones.</p>
+            </article>
+        </section>
+
+        <section id="editor-tools">
+            <h2>Editor Tools</h2>
+            <article>
+                <h3>SetPlayerToSceneViewPosition.cs</h3>
+                <p>An editor-only script that allows you to quickly set the player's starting position to the current position of the Scene View camera. This is useful for testing specific sections of a level without having to manually move the player.</p>
+            </article>
+        </section>
+
+        <section id="how-to-use">
+            <h2>How to Use</h2>
+            <ol>
+                <li>Attach the <code>Movement2D.cs</code> script to your player character.</li>
+                <li>Customize the movement properties in the inspector using the <code>Movement2DEditor</code>.</li>
+                <li>Attach the <code>AnimationController.cs</code> script to your player character and connect it to your <code>Animator</code>.</li>
+                <li>Use the <code>CameraFollow.cs</code> script on your main camera to follow the player.</li>
+                <li>For race levels, use the <code>RaceTimer.cs</code>, <code>StartFinishCheck.cs</code>, and UI elements to display the timer.</li>
+                <li>Use the other scripts as needed for your game's specific requirements.</li>
+            </ol>
+        </section>
+    </main>
+    <footer>
+        <p>Generated by Gemini</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
